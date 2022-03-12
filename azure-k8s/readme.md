@@ -60,6 +60,13 @@ cd kubernetes/cloud/azure/terraform/
 
 ```
 
+# Generate SSH key
+
+```
+ssh-keygen -t rsa -b 4096 -N "VeryStrongSecret123!" -C "pawel.krzysztof.kolanowski@gmail.com" -q -f  ~/.ssh/id_rsa
+SSH_KEY=$(cat ~/.ssh/id_rsa.pub)
+```
+
 ## Terraform Azure Kubernetes Provider
 
 Documentation on all the Kubernetes fields for terraform [here](https://www.terraform.io/docs/providers/azurerm/r/kubernetes_cluster.html)

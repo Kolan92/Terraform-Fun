@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-kubernetes
+spec:
+  selector:
+    matchLabels:
+      name: hello-kubernetes
+  template:
+    metadata:
+      labels:
+        name: hello-kubernetes
+    spec:
+      containers:
+        - name: app
+          image: paulbouwer/hello-kubernetes:1.8
+          ports:
+            - containerPort: 8080
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name:  hello-kubernetes-cluster-ip-service
+spec:
+  selector:
+    app:  hello-kubernetes-service
+  type:  ClusterIP
+  ports:
+  - name:  http
+    protocol: TCP
+    port:  80
+    targetPort:  8080
